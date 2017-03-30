@@ -1,3 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <!--Padding for grid cells-->
+    <dimen name="cell_padding">2dp</dimen>
+    <!--Size of text in grid cells-->
+    <dimen name="cell_text_size">8dp</dimen>
+    <!--Size of result TextViews-->
+    <dimen name="text_size_default">8dp</dimen>
 </resources>

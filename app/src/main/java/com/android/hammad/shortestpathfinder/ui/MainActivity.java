@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -16,19 +14,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.hammad.shortestpathfinder.R;
 import com.android.hammad.shortestpathfinder.models.Cell;
 import com.android.hammad.shortestpathfinder.models.PathFinder;
-import com.android.hammad.shortestpathfinder.R;
+import com.android.hammad.shortestpathfinder.utils.SampleUtils;
 
 public class MainActivity extends AppCompatActivity {
 
     private GridLayout mGrid;
+    private GridLayout mSampleGrid;
     private int mNumRows;
     private int mNumColumns;
     private LinearLayout mMainContentLayout;
     private EditText mEditTextRows;
     private EditText mEditTextCols;
     private Button mBtnRun;
+    private TextView mSampleTextViewPathFound;
+    private TextView mSampleTextViewPathLength;
+    private TextView mSampleTextViewRowOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
             for (int col = 0; col < numColumns; col++) {
                 EditText editText = new EditText(this);
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER |
-                        InputType.TYPE_NUMBER_FLAG_DECIMAL |
                         InputType.TYPE_NUMBER_FLAG_SIGNED);
+                editText.setTextSize(getResources().getDimension(R.dimen.text_size_default));
                 editText.setHint("0");
                 mGrid.addView(editText);
             }
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textViewPathLength = (TextView) findViewById(R.id.tv_pathLength);
         TextView textViewRowOrder = (TextView) findViewById(R.id.tv_rowOrder);
 
+        // Get the data enetered by the user
         for (int row = 0; row < mNumRows; row++) {
             for (int col = 0; col < mNumColumns; col++) {
                 EditText editText = (EditText) mGrid.getChildAt(mNumColumns * row + col);
@@ -130,13 +134,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        // Run the algorithm
         PathFinder pathFinder = new PathFinder(grid, mNumRows, mNumColumns);
         String[] solution = pathFinder.compute();
 
+        // Set the solution strings to these TextViews
         textViewPathAvailable.setText(solution[0]);
         textViewPathLength.setText(solution[1]);
         textViewRowOrder.setText(solution[2]);
 
+        // Set the text size
+        textViewPathAvailable.setTextSize(getResources().getDimension(R.dimen.text_size_default));
+        textViewPathLength.setTextSize(getResources().getDimension(R.dimen.text_size_default));
+        textViewRowOrder.setTextSize(getResources().getDimension(R.dimen.text_size_default));
+
+        // Make the TextViews visible
         textViewPathAvailable.setVisibility(View.VISIBLE);
         textViewPathLength.setVisibility(View.VISIBLE);
         textViewRowOrder.setVisibility(View.VISIBLE);
@@ -155,5 +167,104 @@ public class MainActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
 
         mBtnRun.setVisibility(View.GONE);
+    }
+
+    public void runSampleGrid(View v) {
+        Cell[][] sampleInput;
+        int sampleRows, sampleCols;
+
+        if(v.getId() == R.id.btn_sample1) {
+            // Get the sample grid 1
+            sampleInput = SampleUtils.SAMPLE_GRID_1;
+            sampleRows = SampleUtils.SAMPLE_GRID_1_ROWS;
+            sampleCols = SampleUtils.SAMPLE_GRID_1_COLS;
+        } else if(v.getId() == R.id.btn_sample2) {
+            // Get the sample grid 2
+            sampleInput = SampleUtils.SAMPLE_GRID_2;
+            sampleRows = SampleUtils.SAMPLE_GRID_2_ROWS;
+            sampleCols = SampleUtils.SAMPLE_GRID_2_COLS;
+        } else {
+            // Get the sample grid 3
+            sampleInput = SampleUtils.SAMPLE_GRID_3;
+            sampleRows = SampleUtils.SAMPLE_GRID_3_ROWS;
+            sampleCols = SampleUtils.SAMPLE_GRID_3_COLS;
+        }
+
+        // Fill the GridLayout in the UI with the data inside the sample input grid
+        populateAndRunSampleGrid(sampleInput, sampleRows, sampleCols);
+    }
+
+    /*
+        Displays the sample grid to the user, runs the sample input and displays the result on the UI
+     */
+    public void populateAndRunSampleGrid(Cell[][] inputGrid, int numRows, int numCols) {
+        // Remove views if any related to the sample inputs (grid and results TextViews)
+        removeViews();
+
+        // Create new views
+        mSampleTextViewPathFound = new TextView(this);
+        mSampleTextViewPathLength = new TextView(this);
+        mSampleTextViewRowOrder = new TextView(this);
+        mSampleGrid = new GridLayout(this);
+
+        // Set the number of rows and column inside the GridLayout
+        mSampleGrid.setRowCount(numRows);
+        mSampleGrid.setColumnCount(numCols);
+
+        // Add data to the sample grid from the passed grid
+        for(int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                TextView textView = new TextView(this);
+                // Cell padding to each TextView
+                textView.setPadding((int)getResources().getDimension(R.dimen.cell_padding),
+                        (int)getResources().getDimension(R.dimen.cell_padding),
+                        (int)getResources().getDimension(R.dimen.cell_padding),
+                        (int)getResources().getDimension(R.dimen.cell_padding));
+                // Set the text size
+                textView.setTextSize(getResources().getDimension(R.dimen.cell_text_size));
+                // Set the text to the cost of the cell in the grid
+                textView.setText(String.valueOf(inputGrid[row][col].getCost()));
+                // Caculate the position in the GridLayout to add the view to from
+                // the positon in the grid
+                int pos = numCols * row + col;
+                // Add the TextView to the grid at the right position
+                mSampleGrid.addView(textView, pos);
+            }
+        }
+
+        // Run the algorithm
+        PathFinder pathFinder = new PathFinder(inputGrid, numRows, numCols);
+        String[] solution = pathFinder.compute();
+
+        // Display the results
+        mSampleTextViewPathFound.setText(solution[0]);
+        mSampleTextViewPathLength.setText(solution[1]);
+        mSampleTextViewRowOrder.setText(solution[2]);
+
+        // Set the text size
+        mSampleTextViewPathFound.setTextSize(getResources().getDimension(R.dimen.text_size_default));
+        mSampleTextViewPathLength.setTextSize(getResources().getDimension(R.dimen.text_size_default));
+        mSampleTextViewRowOrder.setTextSize(getResources().getDimension(R.dimen.text_size_default));
+
+        // Add the GridLayout to the UI
+        mMainContentLayout.addView(mSampleGrid);
+
+        // Add TextViews to the UI
+        mMainContentLayout.addView(mSampleTextViewPathFound);
+        mMainContentLayout.addView(mSampleTextViewPathLength);
+        mMainContentLayout.addView(mSampleTextViewRowOrder);
+    }
+
+    /*
+        Removes all views related to the sample input
+        including the sample grid and the result TextViews
+     */
+    public void removeViews() {
+        if(mSampleGrid != null)
+            mSampleGrid.removeAllViews();
+        mMainContentLayout.removeView(mSampleGrid);
+        mMainContentLayout.removeView(mSampleTextViewPathFound);
+        mMainContentLayout.removeView(mSampleTextViewPathLength);
+        mMainContentLayout.removeView(mSampleTextViewRowOrder);
     }
 }

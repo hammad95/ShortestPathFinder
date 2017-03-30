@@ -5,7 +5,7 @@ import com.android.hammad.shortestpathfinder.models.PathFinder;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /*
     Tests for sample inputs to PathFinder

@@ -65,7 +65,7 @@ public class PathFinder {
         int totalCost;
         int[] rowOrder;
 
-        if(mSolutionPath.size() > 0) {
+        if (mSolutionPath.size() > 0) {
             Cell c = mSolutionPath.get(0);
             int row = c.getRow();
             int col = c.getColumn();
@@ -87,8 +87,7 @@ public class PathFinder {
 
             // Set the answer to part 3 in the solution array
             mSolutionString[2] = Arrays.toString(rowOrder);
-        }
-        else {
+        } else {
             // If no cells traversed, set default values to the solution array
             mSolutionString[0] = "No";
             mSolutionString[1] = "0";
@@ -103,8 +102,8 @@ public class PathFinder {
     private int[] calculateRowsTraversed() {
         int[] rowsTraversed = new int[mSolutionPath.size()];
 
-        for(int i = 0; i < mSolutionPath.size(); i++) {
-            rowsTraversed[i] = mSolutionPath.get(i).getRow()+1;
+        for (int i = 0; i < mSolutionPath.size(); i++) {
+            rowsTraversed[i] = mSolutionPath.get(i).getRow() + 1;
         }
 
         return rowsTraversed;
@@ -115,7 +114,7 @@ public class PathFinder {
      */
     private int calculateTotalCost() {
         int totalCost = 0;
-        for(int i = 0; i < mSolutionPath.size(); i++) {
+        for (int i = 0; i < mSolutionPath.size(); i++) {
             totalCost += mSolutionPath.get(i).getCost();
         }
         return totalCost;
@@ -131,7 +130,7 @@ public class PathFinder {
         // The last column of the final grid is the same as the
         // last column of the original grid
         int column = mNumColumns - 1;
-        for(int row = 0; row < mNumRows; row++) {
+        for (int row = 0; row < mNumRows; row++) {
             Cell c = mGrid[row][column];
             mFinalGrid[row][column] = new Cell(c.getRow(), c.getColumn(), c.getCost());
         }
@@ -140,8 +139,8 @@ public class PathFinder {
         // cost required to go from that cell in the original grid to the next adjacent
         // cell in the next column in the final grid
         column--;   // Since we have already processed the last column
-        while(column >= 0) {
-            for(int row = 0; row < mNumRows; row++) {
+        while (column >= 0) {
+            for (int row = 0; row < mNumRows; row++) {
                 Cell current = mGrid[row][column];
                 // Add a new cell with the min possible cost to the final grid
                 addNewCellToFinalGrid(current);
@@ -160,9 +159,9 @@ public class PathFinder {
         // minimum cost possible
         int minCostCellRow = 0;
         int minCost = mFinalGrid[minCostCellRow][0].getCost(); // Initially first cell's cost
-        for(int row = 0; row < mNumRows; row++) {
+        for (int row = 0; row < mNumRows; row++) {
             int cost = mFinalGrid[row][0].getCost();
-            if(cost < minCost) {
+            if (cost < minCost) {
                 minCost = cost;
                 minCostCellRow = row;
             }
@@ -170,14 +169,14 @@ public class PathFinder {
 
         // Add cell with lowest cost in the first column to the solution path
         Cell current = mGrid[minCostCellRow][0];
-        if(current.getCost() > MAX_COST_ALLOWED)
+        if (current.getCost() > MAX_COST_ALLOWED)
             return;
         mSolutionPath.add(current);
 
-        while(true) {
+        while (true) {
             current = getLowestCostNeighbor(current);
             // Stop if current is null or cost would exceed max cost allowed
-            if(current == null || !isCostAllowed(current))
+            if (current == null || !isCostAllowed(current))
                 break;
             // Add current to solution path
             mSolutionPath.add(current);
@@ -194,7 +193,7 @@ public class PathFinder {
     public boolean isCostAllowed(Cell current) {
         int totalCost = 0;
 
-        for(int i = 0; i < mSolutionPath.size(); i++) {
+        for (int i = 0; i < mSolutionPath.size(); i++) {
             totalCost += mSolutionPath.get(i).getCost();
         }
 
@@ -203,7 +202,7 @@ public class PathFinder {
 
     // Check the neighbors of the current cell and return the one with the lowest cost
     private Cell getLowestCostNeighbor(Cell cell) {
-        if(cell.getColumn() + 1 == mNumColumns)
+        if (cell.getColumn() + 1 == mNumColumns)
             return null;
 
         // Get the corresponding cell in the final grid
@@ -217,8 +216,8 @@ public class PathFinder {
         int neighbor1_row = current.getRow() - 1;
 
         // Grid wraps
-        if(neighbor1_row < 0) {
-            neighbor1_row = mNumRows-1;
+        if (neighbor1_row < 0) {
+            neighbor1_row = mNumRows - 1;
         }
 
         Cell neighbor1 = mFinalGrid[neighbor1_row][neighbor1_column];
@@ -233,7 +232,7 @@ public class PathFinder {
         // in the original grid
         Cell neighbor2 = mFinalGrid[neighbor2_row][neighbor2_column];
         // Update min cost
-        if(neighbor2.getCost() < minCost) {
+        if (neighbor2.getCost() < minCost) {
             minCost = neighbor2.getCost();
             minCostCell = neighbor2;
         }
@@ -243,13 +242,13 @@ public class PathFinder {
         int neighbor3_row = current.getRow() + 1;
 
         // Grid wraps
-        if(neighbor3_row == mNumRows) {
+        if (neighbor3_row == mNumRows) {
             neighbor3_row = 0;
         }
 
         Cell neighbor3 = mFinalGrid[neighbor3_row][neighbor3_column];
         // Update min cost
-        if(neighbor3.getCost() < minCost) {
+        if (neighbor3.getCost() < minCost) {
             minCost = neighbor3.getCost();
             minCostCell = neighbor3;
         }
@@ -272,8 +271,8 @@ public class PathFinder {
         int neighbor1_row = current.getRow() - 1;
 
         // Grid wraps
-        if(neighbor1_row < 0) {
-            neighbor1_row = mNumRows-1;
+        if (neighbor1_row < 0) {
+            neighbor1_row = mNumRows - 1;
         }
 
         // Get the neighboring cell in the final grid to the current cell position
@@ -291,7 +290,7 @@ public class PathFinder {
         Cell neighbor2 = mFinalGrid[neighbor2_row][neighbor2_column];
         // Update min cost
         cost = current.getCost() + neighbor2.getCost();
-        if(cost < minCost)
+        if (cost < minCost)
             minCost = cost;
 
         // Get the third neighbor's coordinates
@@ -299,7 +298,7 @@ public class PathFinder {
         int neighbor3_row = current.getRow() + 1;
 
         // Grid wraps
-        if(neighbor3_row == mNumRows) {
+        if (neighbor3_row == mNumRows) {
             neighbor3_row = 0;
         }
 
@@ -308,7 +307,7 @@ public class PathFinder {
         Cell neighbor3 = mFinalGrid[neighbor3_row][neighbor3_column];
         // Update min cost
         cost = current.getCost() + neighbor3.getCost();
-        if(cost < minCost)
+        if (cost < minCost)
             minCost = cost;
 
         // Create a new cell with the min cost

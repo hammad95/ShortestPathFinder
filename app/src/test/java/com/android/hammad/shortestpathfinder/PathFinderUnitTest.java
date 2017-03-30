@@ -14,12 +14,10 @@ public class PathFinderUnitTest {
     private Cell[][] mGrid;
     private PathFinder mPathFinder;
     private String[] mSolutionString;
-
-    int mNumRows,
-            mNumColumns;
+    int mNumRows, mNumColumns;
 
     /*
-        Sample 1 test
+        Sample 1: (6X5 matrix normal flow)
      */
     @Test
     public void testSampleInput1() {
@@ -27,40 +25,38 @@ public class PathFinderUnitTest {
         mNumColumns = 6;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,3);
-        mGrid[0][1] = new Cell(0,1,4);
-        mGrid[0][2] = new Cell(0,2,1);
-        mGrid[0][3] = new Cell(0,3,2);
-        mGrid[0][4] = new Cell(0,4,8);
-        mGrid[0][5] = new Cell(0,5,6);
-        mGrid[1][0] = new Cell(1,0,6);
-        mGrid[1][1] = new Cell(1,1,1);
-        mGrid[1][2] = new Cell(1,2,8);
-        mGrid[1][3] = new Cell(1,3,2);
-        mGrid[1][4] = new Cell(1,4,7);
-        mGrid[1][5] = new Cell(1,5,4);
-        mGrid[2][0] = new Cell(2,0,5);
-        mGrid[2][1] = new Cell(2,1,9);
-        mGrid[2][2] = new Cell(2,2,3);
-        mGrid[2][3] = new Cell(2,3,9);
-        mGrid[2][4] = new Cell(2,4,9);
-        mGrid[2][5] = new Cell(2,5,5);
-        mGrid[3][0] = new Cell(3,0,8);
-        mGrid[3][1] = new Cell(3,1,4);
-        mGrid[3][2] = new Cell(3,2,1);
-        mGrid[3][3] = new Cell(3,3,3);
-        mGrid[3][4] = new Cell(3,4,2);
-        mGrid[3][5] = new Cell(3,5,6);
-        mGrid[4][0] = new Cell(4,0,3);
-        mGrid[4][1] = new Cell(4,1,7);
-        mGrid[4][2] = new Cell(4,2,2);
-        mGrid[4][3] = new Cell(4,3,8);
-        mGrid[4][4] = new Cell(4,4,6);
-        mGrid[4][5] = new Cell(4,5,4);
+        mGrid[0][0] = new Cell(0, 0, 3);
+        mGrid[0][1] = new Cell(0, 1, 4);
+        mGrid[0][2] = new Cell(0, 2, 1);
+        mGrid[0][3] = new Cell(0, 3, 2);
+        mGrid[0][4] = new Cell(0, 4, 8);
+        mGrid[0][5] = new Cell(0, 5, 6);
+        mGrid[1][0] = new Cell(1, 0, 6);
+        mGrid[1][1] = new Cell(1, 1, 1);
+        mGrid[1][2] = new Cell(1, 2, 8);
+        mGrid[1][3] = new Cell(1, 3, 2);
+        mGrid[1][4] = new Cell(1, 4, 7);
+        mGrid[1][5] = new Cell(1, 5, 4);
+        mGrid[2][0] = new Cell(2, 0, 5);
+        mGrid[2][1] = new Cell(2, 1, 9);
+        mGrid[2][2] = new Cell(2, 2, 3);
+        mGrid[2][3] = new Cell(2, 3, 9);
+        mGrid[2][4] = new Cell(2, 4, 9);
+        mGrid[2][5] = new Cell(2, 5, 5);
+        mGrid[3][0] = new Cell(3, 0, 8);
+        mGrid[3][1] = new Cell(3, 1, 4);
+        mGrid[3][2] = new Cell(3, 2, 1);
+        mGrid[3][3] = new Cell(3, 3, 3);
+        mGrid[3][4] = new Cell(3, 4, 2);
+        mGrid[3][5] = new Cell(3, 5, 6);
+        mGrid[4][0] = new Cell(4, 0, 3);
+        mGrid[4][1] = new Cell(4, 1, 7);
+        mGrid[4][2] = new Cell(4, 2, 2);
+        mGrid[4][3] = new Cell(4, 3, 8);
+        mGrid[4][4] = new Cell(4, 4, 6);
+        mGrid[4][5] = new Cell(4, 5, 4);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("Yes", mSolutionString[0]);
@@ -69,7 +65,7 @@ public class PathFinderUnitTest {
     }
 
     /*
-        Sample 2 test
+        Sample 2: (6X5 matrix normal flow)
      */
     @Test
     public void testSampleInput2() {
@@ -77,40 +73,38 @@ public class PathFinderUnitTest {
         mNumColumns = 6;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,3);
-        mGrid[0][1] = new Cell(0,1,4);
-        mGrid[0][2] = new Cell(0,2,1);
-        mGrid[0][3] = new Cell(0,3,2);
-        mGrid[0][4] = new Cell(0,4,8);
-        mGrid[0][5] = new Cell(0,5,6);
-        mGrid[1][0] = new Cell(1,0,6);
-        mGrid[1][1] = new Cell(1,1,1);
-        mGrid[1][2] = new Cell(1,2,8);
-        mGrid[1][3] = new Cell(1,3,2);
-        mGrid[1][4] = new Cell(1,4,7);
-        mGrid[1][5] = new Cell(1,5,4);
-        mGrid[2][0] = new Cell(2,0,5);
-        mGrid[2][1] = new Cell(2,1,9);
-        mGrid[2][2] = new Cell(2,2,3);
-        mGrid[2][3] = new Cell(2,3,9);
-        mGrid[2][4] = new Cell(2,4,9);
-        mGrid[2][5] = new Cell(2,5,5);
-        mGrid[3][0] = new Cell(3,0,8);
-        mGrid[3][1] = new Cell(3,1,4);
-        mGrid[3][2] = new Cell(3,2,1);
-        mGrid[3][3] = new Cell(3,3,3);
-        mGrid[3][4] = new Cell(3,4,2);
-        mGrid[3][5] = new Cell(3,5,6);
-        mGrid[4][0] = new Cell(4,0,3);
-        mGrid[4][1] = new Cell(4,1,7);
-        mGrid[4][2] = new Cell(4,2,2);
-        mGrid[4][3] = new Cell(4,3,1);
-        mGrid[4][4] = new Cell(4,4,2);
-        mGrid[4][5] = new Cell(4,5,3);
+        mGrid[0][0] = new Cell(0, 0, 3);
+        mGrid[0][1] = new Cell(0, 1, 4);
+        mGrid[0][2] = new Cell(0, 2, 1);
+        mGrid[0][3] = new Cell(0, 3, 2);
+        mGrid[0][4] = new Cell(0, 4, 8);
+        mGrid[0][5] = new Cell(0, 5, 6);
+        mGrid[1][0] = new Cell(1, 0, 6);
+        mGrid[1][1] = new Cell(1, 1, 1);
+        mGrid[1][2] = new Cell(1, 2, 8);
+        mGrid[1][3] = new Cell(1, 3, 2);
+        mGrid[1][4] = new Cell(1, 4, 7);
+        mGrid[1][5] = new Cell(1, 5, 4);
+        mGrid[2][0] = new Cell(2, 0, 5);
+        mGrid[2][1] = new Cell(2, 1, 9);
+        mGrid[2][2] = new Cell(2, 2, 3);
+        mGrid[2][3] = new Cell(2, 3, 9);
+        mGrid[2][4] = new Cell(2, 4, 9);
+        mGrid[2][5] = new Cell(2, 5, 5);
+        mGrid[3][0] = new Cell(3, 0, 8);
+        mGrid[3][1] = new Cell(3, 1, 4);
+        mGrid[3][2] = new Cell(3, 2, 1);
+        mGrid[3][3] = new Cell(3, 3, 3);
+        mGrid[3][4] = new Cell(3, 4, 2);
+        mGrid[3][5] = new Cell(3, 5, 6);
+        mGrid[4][0] = new Cell(4, 0, 3);
+        mGrid[4][1] = new Cell(4, 1, 7);
+        mGrid[4][2] = new Cell(4, 2, 2);
+        mGrid[4][3] = new Cell(4, 3, 1);
+        mGrid[4][4] = new Cell(4, 4, 2);
+        mGrid[4][5] = new Cell(4, 5, 3);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("Yes", mSolutionString[0]);
@@ -119,7 +113,7 @@ public class PathFinderUnitTest {
     }
 
     /*
-        Sample 3 test
+        Sample 3: (5X3 matrix with no path <50)
      */
     @Test
     public void testSampleInput3() {
@@ -127,25 +121,23 @@ public class PathFinderUnitTest {
         mNumColumns = 5;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,19);
-        mGrid[0][1] = new Cell(0,1,10);
-        mGrid[0][2] = new Cell(0,2,19);
-        mGrid[0][3] = new Cell(0,3,10);
-        mGrid[0][4] = new Cell(0,4,19);
-        mGrid[1][0] = new Cell(1,0,21);
-        mGrid[1][1] = new Cell(1,1,23);
-        mGrid[1][2] = new Cell(1,2,20);
-        mGrid[1][3] = new Cell(1,3,19);
-        mGrid[1][4] = new Cell(1,4,12);
-        mGrid[2][0] = new Cell(2,0,20);
-        mGrid[2][1] = new Cell(2,1,12);
-        mGrid[2][2] = new Cell(2,2,20);
-        mGrid[2][3] = new Cell(2,3,11);
-        mGrid[2][4] = new Cell(2,4,10);
+        mGrid[0][0] = new Cell(0, 0, 19);
+        mGrid[0][1] = new Cell(0, 1, 10);
+        mGrid[0][2] = new Cell(0, 2, 19);
+        mGrid[0][3] = new Cell(0, 3, 10);
+        mGrid[0][4] = new Cell(0, 4, 19);
+        mGrid[1][0] = new Cell(1, 0, 21);
+        mGrid[1][1] = new Cell(1, 1, 23);
+        mGrid[1][2] = new Cell(1, 2, 20);
+        mGrid[1][3] = new Cell(1, 3, 19);
+        mGrid[1][4] = new Cell(1, 4, 12);
+        mGrid[2][0] = new Cell(2, 0, 20);
+        mGrid[2][1] = new Cell(2, 1, 12);
+        mGrid[2][2] = new Cell(2, 2, 20);
+        mGrid[2][3] = new Cell(2, 3, 11);
+        mGrid[2][4] = new Cell(2, 4, 10);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("No", mSolutionString[0]);
@@ -154,7 +146,7 @@ public class PathFinderUnitTest {
     }
 
     /*
-        Sample 4 test
+        Sample 4: (1X5 matrix)
      */
     @Test
     public void testSampleInput4() {
@@ -162,15 +154,13 @@ public class PathFinderUnitTest {
         mNumColumns = 5;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,5);
-        mGrid[0][1] = new Cell(0,1,8);
-        mGrid[0][2] = new Cell(0,2,5);
-        mGrid[0][3] = new Cell(0,3,3);
-        mGrid[0][4] = new Cell(0,4,5);
+        mGrid[0][0] = new Cell(0, 0, 5);
+        mGrid[0][1] = new Cell(0, 1, 8);
+        mGrid[0][2] = new Cell(0, 2, 5);
+        mGrid[0][3] = new Cell(0, 3, 3);
+        mGrid[0][4] = new Cell(0, 4, 5);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("Yes", mSolutionString[0]);
@@ -179,7 +169,7 @@ public class PathFinderUnitTest {
     }
 
     /*
-        Sample 5 test
+        Sample 5: (5X1 matrix)
      */
     @Test
     public void testSampleInput5() {
@@ -187,15 +177,13 @@ public class PathFinderUnitTest {
         mNumColumns = 1;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,5);
-        mGrid[1][0] = new Cell(1,0,8);
-        mGrid[2][0] = new Cell(2,0,5);
-        mGrid[3][0] = new Cell(3,0,3);
-        mGrid[4][0] = new Cell(4,0,5);
+        mGrid[0][0] = new Cell(0, 0, 5);
+        mGrid[1][0] = new Cell(1, 0, 8);
+        mGrid[2][0] = new Cell(2, 0, 5);
+        mGrid[3][0] = new Cell(3, 0, 3);
+        mGrid[4][0] = new Cell(4, 0, 5);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("Yes", mSolutionString[0]);
@@ -204,7 +192,7 @@ public class PathFinderUnitTest {
     }
 
     /*
-        Sample 8 test
+        Sample 8: (Starting with >50)
      */
     @Test
     public void testSampleInput8() {
@@ -212,25 +200,23 @@ public class PathFinderUnitTest {
         mNumColumns = 5;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,69);
-        mGrid[0][1] = new Cell(0,1,10);
-        mGrid[0][2] = new Cell(0,2,19);
-        mGrid[0][3] = new Cell(0,3,10);
-        mGrid[0][4] = new Cell(0,4,19);
-        mGrid[1][0] = new Cell(1,0,51);
-        mGrid[1][1] = new Cell(1,1,23);
-        mGrid[1][2] = new Cell(1,2,20);
-        mGrid[1][3] = new Cell(1,3,19);
-        mGrid[1][4] = new Cell(1,4,12);
-        mGrid[2][0] = new Cell(2,0,60);
-        mGrid[2][1] = new Cell(2,1,12);
-        mGrid[2][2] = new Cell(2,2,20);
-        mGrid[2][3] = new Cell(2,3,11);
-        mGrid[2][4] = new Cell(2,4,10);
+        mGrid[0][0] = new Cell(0, 0, 69);
+        mGrid[0][1] = new Cell(0, 1, 10);
+        mGrid[0][2] = new Cell(0, 2, 19);
+        mGrid[0][3] = new Cell(0, 3, 10);
+        mGrid[0][4] = new Cell(0, 4, 19);
+        mGrid[1][0] = new Cell(1, 0, 51);
+        mGrid[1][1] = new Cell(1, 1, 23);
+        mGrid[1][2] = new Cell(1, 2, 20);
+        mGrid[1][3] = new Cell(1, 3, 19);
+        mGrid[1][4] = new Cell(1, 4, 12);
+        mGrid[2][0] = new Cell(2, 0, 60);
+        mGrid[2][1] = new Cell(2, 1, 12);
+        mGrid[2][2] = new Cell(2, 2, 20);
+        mGrid[2][3] = new Cell(2, 3, 11);
+        mGrid[2][4] = new Cell(2, 4, 10);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("No", mSolutionString[0]);
@@ -239,7 +225,7 @@ public class PathFinderUnitTest {
     }
 
     /*
-        Sample 9 test
+        Sample 9: (One value >50)
      */
     @Test
     public void testSampleInput9() {
@@ -247,22 +233,20 @@ public class PathFinderUnitTest {
         mNumColumns = 4;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,60);
-        mGrid[0][1] = new Cell(0,1,3);
-        mGrid[0][2] = new Cell(0,2,3);
-        mGrid[0][3] = new Cell(0,3,6);
-        mGrid[1][0] = new Cell(1,0,6);
-        mGrid[1][1] = new Cell(1,1,3);
-        mGrid[1][2] = new Cell(1,2,7);
-        mGrid[1][3] = new Cell(1,3,9);
-        mGrid[2][0] = new Cell(2,0,5);
-        mGrid[2][1] = new Cell(2,1,6);
-        mGrid[2][2] = new Cell(2,2,8);
-        mGrid[2][3] = new Cell(2,3,3);
+        mGrid[0][0] = new Cell(0, 0, 60);
+        mGrid[0][1] = new Cell(0, 1, 3);
+        mGrid[0][2] = new Cell(0, 2, 3);
+        mGrid[0][3] = new Cell(0, 3, 6);
+        mGrid[1][0] = new Cell(1, 0, 6);
+        mGrid[1][1] = new Cell(1, 1, 3);
+        mGrid[1][2] = new Cell(1, 2, 7);
+        mGrid[1][3] = new Cell(1, 3, 9);
+        mGrid[2][0] = new Cell(2, 0, 5);
+        mGrid[2][1] = new Cell(2, 1, 6);
+        mGrid[2][2] = new Cell(2, 2, 8);
+        mGrid[2][3] = new Cell(2, 3, 3);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("Yes", mSolutionString[0]);
@@ -271,7 +255,7 @@ public class PathFinderUnitTest {
     }
 
     /*
-        Sample 10 test
+        Sample 10: (Negative values)
      */
     @Test
     public void testSampleInput10() {
@@ -279,26 +263,24 @@ public class PathFinderUnitTest {
         mNumColumns = 4;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,6);
-        mGrid[0][1] = new Cell(0,1,3);
-        mGrid[0][2] = new Cell(0,2,-5);
-        mGrid[0][3] = new Cell(0,3,9);
-        mGrid[1][0] = new Cell(1,0,-5);
-        mGrid[1][1] = new Cell(1,1,2);
-        mGrid[1][2] = new Cell(1,2,4);
-        mGrid[1][3] = new Cell(1,3,10);
-        mGrid[2][0] = new Cell(2,0,3);
-        mGrid[2][1] = new Cell(2,1,-2);
-        mGrid[2][2] = new Cell(2,2,6);
-        mGrid[2][3] = new Cell(2,3,10);
-        mGrid[3][0] = new Cell(3,0,6);
-        mGrid[3][1] = new Cell(3,1,-1);
-        mGrid[3][2] = new Cell(3,2,-2);
-        mGrid[3][3] = new Cell(3,3,10);
+        mGrid[0][0] = new Cell(0, 0, 6);
+        mGrid[0][1] = new Cell(0, 1, 3);
+        mGrid[0][2] = new Cell(0, 2, -5);
+        mGrid[0][3] = new Cell(0, 3, 9);
+        mGrid[1][0] = new Cell(1, 0, -5);
+        mGrid[1][1] = new Cell(1, 1, 2);
+        mGrid[1][2] = new Cell(1, 2, 4);
+        mGrid[1][3] = new Cell(1, 3, 10);
+        mGrid[2][0] = new Cell(2, 0, 3);
+        mGrid[2][1] = new Cell(2, 1, -2);
+        mGrid[2][2] = new Cell(2, 2, 6);
+        mGrid[2][3] = new Cell(2, 3, 10);
+        mGrid[3][0] = new Cell(3, 0, 6);
+        mGrid[3][1] = new Cell(3, 1, -1);
+        mGrid[3][2] = new Cell(3, 2, -2);
+        mGrid[3][3] = new Cell(3, 3, 10);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("Yes", mSolutionString[0]);
@@ -307,7 +289,7 @@ public class PathFinderUnitTest {
     }
 
     /*
-        Sample 11 test
+        Sample 11: Complete path vs. lower cost incomplete path
      */
     @Test
     public void testSampleInput11() {
@@ -315,18 +297,16 @@ public class PathFinderUnitTest {
         mNumColumns = 2;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,51);
-        mGrid[0][1] = new Cell(0,1,51);
-        mGrid[1][0] = new Cell(1,0,0);
-        mGrid[1][1] = new Cell(1,1,51);
-        mGrid[2][0] = new Cell(2,0,51);
-        mGrid[2][1] = new Cell(2,1,51);
-        mGrid[3][0] = new Cell(3,0,5);
-        mGrid[3][1] = new Cell(3,1,5);
+        mGrid[0][0] = new Cell(0, 0, 51);
+        mGrid[0][1] = new Cell(0, 1, 51);
+        mGrid[1][0] = new Cell(1, 0, 0);
+        mGrid[1][1] = new Cell(1, 1, 51);
+        mGrid[2][0] = new Cell(2, 0, 51);
+        mGrid[2][1] = new Cell(2, 1, 51);
+        mGrid[3][0] = new Cell(3, 0, 5);
+        mGrid[3][1] = new Cell(3, 1, 5);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("Yes", mSolutionString[0]);
@@ -335,7 +315,7 @@ public class PathFinderUnitTest {
     }
 
     /*
-        Sample 12 test
+        Sample 12: Longer incomplete path vs. shorter lower cost incomplete path
      */
     @Test
     public void testSampleInput12() {
@@ -343,22 +323,20 @@ public class PathFinderUnitTest {
         mNumColumns = 3;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,51);
-        mGrid[0][1] = new Cell(0,1,51);
-        mGrid[0][2] = new Cell(0,2,51);
-        mGrid[1][0] = new Cell(1,0,0);
-        mGrid[1][1] = new Cell(1,1,51);
-        mGrid[1][2] = new Cell(1,2,51);
-        mGrid[2][0] = new Cell(2,0,51);
-        mGrid[2][1] = new Cell(2,1,51);
-        mGrid[2][2] = new Cell(2,2,51);
-        mGrid[3][0] = new Cell(3,0,5);
-        mGrid[3][1] = new Cell(3,1,5);
-        mGrid[3][2] = new Cell(3,2,51);
+        mGrid[0][0] = new Cell(0, 0, 51);
+        mGrid[0][1] = new Cell(0, 1, 51);
+        mGrid[0][2] = new Cell(0, 2, 51);
+        mGrid[1][0] = new Cell(1, 0, 0);
+        mGrid[1][1] = new Cell(1, 1, 51);
+        mGrid[1][2] = new Cell(1, 2, 51);
+        mGrid[2][0] = new Cell(2, 0, 51);
+        mGrid[2][1] = new Cell(2, 1, 51);
+        mGrid[2][2] = new Cell(2, 2, 51);
+        mGrid[3][0] = new Cell(3, 0, 5);
+        mGrid[3][1] = new Cell(3, 1, 5);
+        mGrid[3][2] = new Cell(3, 2, 51);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("No", mSolutionString[0]);
@@ -366,9 +344,8 @@ public class PathFinderUnitTest {
         assertEquals("[4, 4]", mSolutionString[2]);
     }
 
-
     /*
-        Sample 13 test
+        Sample 13: Large number of columns
      */
     @Test
     public void testSampleInput13() {
@@ -376,50 +353,48 @@ public class PathFinderUnitTest {
         mNumColumns = 20;
 
         mGrid = new Cell[mNumRows][mNumColumns];
-
-        mGrid[0][0] = new Cell(0,0,1);
-        mGrid[0][1] = new Cell(0,1,1);
-        mGrid[0][2] = new Cell(0,2,1);
-        mGrid[0][3] = new Cell(0,3,1);
-        mGrid[0][4] = new Cell(0,4,1);
-        mGrid[0][5] = new Cell(0,5,1);
-        mGrid[0][6] = new Cell(0,6,1);
-        mGrid[0][7] = new Cell(0,7,1);
-        mGrid[0][8] = new Cell(0,8,1);
-        mGrid[0][9] = new Cell(0,9,1);
-        mGrid[0][10] = new Cell(0,10,1);
-        mGrid[0][11] = new Cell(0,11,1);
-        mGrid[0][12] = new Cell(0,12,1);
-        mGrid[0][13] = new Cell(0,13,1);
-        mGrid[0][14] = new Cell(0,14,1);
-        mGrid[0][15] = new Cell(0,15,1);
-        mGrid[0][16] = new Cell(0,16,1);
-        mGrid[0][17] = new Cell(0,17,1);
-        mGrid[0][18] = new Cell(0,18,1);
-        mGrid[0][19] = new Cell(0,19,1);
-        mGrid[1][0] = new Cell(1,0,2);
-        mGrid[1][1] = new Cell(1,1,2);
-        mGrid[1][2] = new Cell(1,2,2);
-        mGrid[1][3] = new Cell(1,3,2);
-        mGrid[1][4] = new Cell(1,4,2);
-        mGrid[1][5] = new Cell(1,5,2);
-        mGrid[1][6] = new Cell(1,6,2);
-        mGrid[1][7] = new Cell(1,7,2);
-        mGrid[1][8] = new Cell(1,8,2);
-        mGrid[1][9] = new Cell(1,9,2);
-        mGrid[1][10] = new Cell(1,10,2);
-        mGrid[1][11] = new Cell(1,11,2);
-        mGrid[1][12] = new Cell(1,12,2);
-        mGrid[1][13] = new Cell(1,13,2);
-        mGrid[1][14] = new Cell(1,14,2);
-        mGrid[1][15] = new Cell(1,15,2);
-        mGrid[1][16] = new Cell(1,16,2);
-        mGrid[1][17] = new Cell(1,17,2);
-        mGrid[1][18] = new Cell(1,18,2);
-        mGrid[1][19] = new Cell(1,19,2);
+        mGrid[0][0] = new Cell(0, 0, 1);
+        mGrid[0][1] = new Cell(0, 1, 1);
+        mGrid[0][2] = new Cell(0, 2, 1);
+        mGrid[0][3] = new Cell(0, 3, 1);
+        mGrid[0][4] = new Cell(0, 4, 1);
+        mGrid[0][5] = new Cell(0, 5, 1);
+        mGrid[0][6] = new Cell(0, 6, 1);
+        mGrid[0][7] = new Cell(0, 7, 1);
+        mGrid[0][8] = new Cell(0, 8, 1);
+        mGrid[0][9] = new Cell(0, 9, 1);
+        mGrid[0][10] = new Cell(0, 10, 1);
+        mGrid[0][11] = new Cell(0, 11, 1);
+        mGrid[0][12] = new Cell(0, 12, 1);
+        mGrid[0][13] = new Cell(0, 13, 1);
+        mGrid[0][14] = new Cell(0, 14, 1);
+        mGrid[0][15] = new Cell(0, 15, 1);
+        mGrid[0][16] = new Cell(0, 16, 1);
+        mGrid[0][17] = new Cell(0, 17, 1);
+        mGrid[0][18] = new Cell(0, 18, 1);
+        mGrid[0][19] = new Cell(0, 19, 1);
+        mGrid[1][0] = new Cell(1, 0, 2);
+        mGrid[1][1] = new Cell(1, 1, 2);
+        mGrid[1][2] = new Cell(1, 2, 2);
+        mGrid[1][3] = new Cell(1, 3, 2);
+        mGrid[1][4] = new Cell(1, 4, 2);
+        mGrid[1][5] = new Cell(1, 5, 2);
+        mGrid[1][6] = new Cell(1, 6, 2);
+        mGrid[1][7] = new Cell(1, 7, 2);
+        mGrid[1][8] = new Cell(1, 8, 2);
+        mGrid[1][9] = new Cell(1, 9, 2);
+        mGrid[1][10] = new Cell(1, 10, 2);
+        mGrid[1][11] = new Cell(1, 11, 2);
+        mGrid[1][12] = new Cell(1, 12, 2);
+        mGrid[1][13] = new Cell(1, 13, 2);
+        mGrid[1][14] = new Cell(1, 14, 2);
+        mGrid[1][15] = new Cell(1, 15, 2);
+        mGrid[1][16] = new Cell(1, 16, 2);
+        mGrid[1][17] = new Cell(1, 17, 2);
+        mGrid[1][18] = new Cell(1, 18, 2);
+        mGrid[1][19] = new Cell(1, 19, 2);
 
         mPathFinder = new PathFinder(mGrid, mNumRows, mNumColumns);
-
         mSolutionString = mPathFinder.compute();
 
         assertEquals("Yes", mSolutionString[0]);

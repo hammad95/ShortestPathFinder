@@ -173,12 +173,12 @@ public class MainActivity extends AppCompatActivity {
         Cell[][] sampleInput;
         int sampleRows, sampleCols;
 
-        if(v.getId() == R.id.btn_sample1) {
+        if (v.getId() == R.id.btn_sample1) {
             // Get the sample grid 1
             sampleInput = SampleUtils.SAMPLE_GRID_1;
             sampleRows = SampleUtils.SAMPLE_GRID_1_ROWS;
             sampleCols = SampleUtils.SAMPLE_GRID_1_COLS;
-        } else if(v.getId() == R.id.btn_sample2) {
+        } else if (v.getId() == R.id.btn_sample2) {
             // Get the sample grid 2
             sampleInput = SampleUtils.SAMPLE_GRID_2;
             sampleRows = SampleUtils.SAMPLE_GRID_2_ROWS;
@@ -212,14 +212,14 @@ public class MainActivity extends AppCompatActivity {
         mSampleGrid.setColumnCount(numCols);
 
         // Add data to the sample grid from the passed grid
-        for(int row = 0; row < numRows; row++) {
+        for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
                 TextView textView = new TextView(this);
                 // Cell padding to each TextView
-                textView.setPadding((int)getResources().getDimension(R.dimen.cell_padding),
-                        (int)getResources().getDimension(R.dimen.cell_padding),
-                        (int)getResources().getDimension(R.dimen.cell_padding),
-                        (int)getResources().getDimension(R.dimen.cell_padding));
+                textView.setPadding((int) getResources().getDimension(R.dimen.cell_padding),
+                        (int) getResources().getDimension(R.dimen.cell_padding),
+                        (int) getResources().getDimension(R.dimen.cell_padding),
+                        (int) getResources().getDimension(R.dimen.cell_padding));
                 // Set the text size
                 textView.setTextSize(getResources().getDimension(R.dimen.cell_text_size));
                 // Set the text to the cost of the cell in the grid
@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
         including the sample grid and the result TextViews
      */
     public void removeViews() {
-        if(mSampleGrid != null)
+        if (mSampleGrid != null)
             mSampleGrid.removeAllViews();
         mMainContentLayout.removeView(mSampleGrid);
         mMainContentLayout.removeView(mSampleTextViewPathFound);

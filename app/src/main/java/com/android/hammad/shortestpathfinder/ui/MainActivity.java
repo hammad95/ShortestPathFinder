@@ -19,6 +19,8 @@ import com.android.hammad.shortestpathfinder.models.Cell;
 import com.android.hammad.shortestpathfinder.models.PathFinder;
 import com.android.hammad.shortestpathfinder.utils.SampleUtils;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     private GridLayout mGrid;
@@ -29,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEditTextRows;
     private EditText mEditTextCols;
     private Button mBtnRun;
+
+    private TextView mTextViewPathFound;
+    private TextView mTextViewPathLength;
+    private TextView mTextViewRowOrder;
+
     private TextView mSampleTextViewPathFound;
     private TextView mSampleTextViewPathLength;
     private TextView mSampleTextViewRowOrder;
@@ -51,11 +58,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the views
         mMainContentLayout = (LinearLayout) findViewById(R.id.linear_layout_main);
-
         mEditTextRows = (EditText) findViewById(R.id.et_rows);
         mEditTextCols = (EditText) findViewById(R.id.et_columns);
-
         mBtnRun = (Button) findViewById(R.id.button_run);
+        mTextViewPathFound = (TextView) findViewById(R.id.tv_pathAvailable);
+        mTextViewPathLength = (TextView) findViewById(R.id.tv_pathLength);
+        mTextViewRowOrder = (TextView) findViewById(R.id.tv_rowOrder);
+
+        // Set the text size of the result text views for custom grid to the default size
+        mTextViewPathFound.setTextSize(getResources().getDimension(R.dimen.text_size_default));
+        mTextViewPathLength.setTextSize(getResources().getDimension(R.dimen.text_size_default));
+        mTextViewRowOrder.setTextSize(getResources().getDimension(R.dimen.text_size_default));
     }
 
     // Generates the grid of user specified rows X user specified column
@@ -79,10 +92,14 @@ public class MainActivity extends AppCompatActivity {
         Adds the user specified num rows x num columns grid to the UI
      */
     public void addGridToUI(int numRows, int numColumns) {
-
-        if (mGrid != null) {
+        // remove old grid
+        if(mGrid != null)
             mMainContentLayout.removeView(mGrid);
-        }
+
+        // Set visibility of result TextView to gone
+        mTextViewPathFound.setVisibility(View.GONE);
+        mTextViewPathLength.setVisibility(View.GONE);
+        mTextViewRowOrder.setVisibility(View.GONE);
 
         mGrid = new GridLayout(this);
         mGrid.setRowCount(numRows);
@@ -105,14 +122,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
+        Removes the old output and grid when a new grid needs to be added and run
+     */
+
+    /*
         Extracts data from the grid, run the path finding alogorithm and displays
         the result on the UI
      */
     public void solveShortestPath(View v) {
         Cell[][] grid = new Cell[mNumRows][mNumColumns];
-        TextView textViewPathAvailable = (TextView) findViewById(R.id.tv_pathAvailable);
-        TextView textViewPathLength = (TextView) findViewById(R.id.tv_pathLength);
-        TextView textViewRowOrder = (TextView) findViewById(R.id.tv_rowOrder);
 
         // Get the data enetered by the user
         for (int row = 0; row < mNumRows; row++) {
@@ -139,19 +157,14 @@ public class MainActivity extends AppCompatActivity {
         String[] solution = pathFinder.compute();
 
         // Set the solution strings to these TextViews
-        textViewPathAvailable.setText(solution[0]);
-        textViewPathLength.setText(solution[1]);
-        textViewRowOrder.setText(solution[2]);
-
-        // Set the text size
-        textViewPathAvailable.setTextSize(getResources().getDimension(R.dimen.text_size_default));
-        textViewPathLength.setTextSize(getResources().getDimension(R.dimen.text_size_default));
-        textViewRowOrder.setTextSize(getResources().getDimension(R.dimen.text_size_default));
+        mTextViewPathFound.setText(solution[0]);
+        mTextViewPathLength.setText(solution[1]);
+        mTextViewRowOrder.setText(solution[2]);
 
         // Make the TextViews visible
-        textViewPathAvailable.setVisibility(View.VISIBLE);
-        textViewPathLength.setVisibility(View.VISIBLE);
-        textViewRowOrder.setVisibility(View.VISIBLE);
+        mTextViewPathFound.setVisibility(View.VISIBLE);
+        mTextViewPathLength.setVisibility(View.VISIBLE);
+        mTextViewRowOrder.setVisibility(View.VISIBLE);
     }
 
     /*

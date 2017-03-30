@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ShortestPathFinder</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="edit_text_hint_rows">Rows</string>
+    <string name="edit_text_hint_cols">Columns</string>
+    <string name="text_times">x</string>
+    <string name="btn_label_done">DONE</string>
+    <string name="btn_label_run">RUN</string>
+    <string name="text_error_toast">Rows must be 1 – 10, \nColumns must be 5 – 100, \nIntegers only</string>
+</resources>

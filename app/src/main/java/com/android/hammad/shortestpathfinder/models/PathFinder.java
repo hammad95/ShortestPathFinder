@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class PathFinder {
     // The maximum cost a path is allowed to have
-    private final int MAX_COST_ALLOWED = 49;
+    private final int MAX_COST_ALLOWED = 50;
 
     // This is the user created grid
     private Cell[][] mGrid;

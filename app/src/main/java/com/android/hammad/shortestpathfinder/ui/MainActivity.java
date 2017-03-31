@@ -47,15 +47,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         // Get the views
         mMainContentLayout = (LinearLayout) findViewById(R.id.linear_layout_main);
         mEditTextRows = (EditText) findViewById(R.id.et_rows);
@@ -77,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             mNumRows = Integer.parseInt(mEditTextRows.getText().toString());
             mNumColumns = Integer.parseInt(mEditTextCols.getText().toString());
-            if ((mNumRows > 10 || mNumRows < 1) || (mNumColumns > 100 || mNumColumns < 5)) {
+            if ((mNumRows > 10 || mNumRows < 1) || (mNumColumns > 100 || mNumColumns < 1)) {
                 deleteDataAndShowError();
             } else {
                 addGridToUI(mNumRows, mNumColumns);
@@ -122,17 +113,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-        Removes the old output and grid when a new grid needs to be added and run
-     */
-
-    /*
         Extracts data from the grid, run the path finding alogorithm and displays
         the result on the UI
      */
     public void solveShortestPath(View v) {
         Cell[][] grid = new Cell[mNumRows][mNumColumns];
 
-        // Get the data enetered by the user
+        // Get the data entered by the user
         for (int row = 0; row < mNumRows; row++) {
             for (int col = 0; col < mNumColumns; col++) {
                 EditText editText = (EditText) mGrid.getChildAt(mNumColumns * row + col);
@@ -142,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         int cost = Integer.parseInt(editText.getText().toString());
                         grid[row][col] = new Cell(row, col, cost);
                     } else {
-                        deleteDataAndShowError();
+                        Toast.makeText(this, getString(R.string.text_empty_cell_toast), Toast.LENGTH_LONG).show();
                         return;
                     }
                 } catch (Exception e) {
@@ -182,6 +169,11 @@ public class MainActivity extends AppCompatActivity {
         mBtnRun.setVisibility(View.GONE);
     }
 
+    /*
+        Checks user input to pick the correct sample grid to run
+        The correct input to pick is determined by the button that
+        the user pressed
+     */
     public void runSampleGrid(View v) {
         Cell[][] sampleInput;
         int sampleRows, sampleCols;

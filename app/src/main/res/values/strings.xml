@@ -6,7 +6,8 @@
     <string name="text_times">x</string>
     <string name="btn_label_done">DONE</string>
     <string name="btn_label_run">RUN</string>
-    <string name="text_error_toast">Rows must be 1 – 10, \nColumns must be 5 – 100, \nIntegers only</string>
+    <string name="text_error_toast">Rows must be 1 – 10, \nColumns must be 1 – 100, \nIntegers only</string>
+    <string name="text_empty_cell_toast">All cells must be filled!</string>
     <string name="btn_sample1_label">Sample 1</string>
     <string name="btn_sample2_label">Sample 2</string>
     <string name="btn_sample3_label">Sample 3</string>
